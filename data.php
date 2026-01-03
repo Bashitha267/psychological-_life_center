@@ -4,68 +4,56 @@
 // Hero Carousel Images
 $heroImages = [
     [
-        'image' => 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1920&h=600&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1200&h=800&fit=crop',
         'title' => 'Welcome to SereneMind',
-        'subtitle' => 'Sri Lanka\'s Leading Psychological Life Center'
+        'description' => 'Sri Lanka\'s leading psychological life center providing compassionate, professional mental health care for individuals, families, and communities.',
+        'buttonText' => 'Schedule Consultation',
+        'buttonLink' => 'contact.php',
+        'bgColor' => '#F0F8FF'
     ],
     [
-        'image' => 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1920&h=600&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=800&fit=crop',
         'title' => 'Professional Mental Health Care',
-        'subtitle' => 'Compassionate Support for Your Journey'
+        'description' => 'Experience transformative therapy with our team of experienced psychologists dedicated to supporting your journey toward mental wellness and personal growth.',
+        'buttonText' => 'Explore Services',
+        'buttonLink' => 'services.php',
+        'bgColor' => '#FFFFFF'
     ],
     [
-        'image' => 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1920&h=600&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&h=800&fit=crop',
         'title' => 'Empowering Lives Through Therapy',
-        'subtitle' => 'Your Mental Wellness Matters'
+        'description' => 'Join a supportive community where your mental wellness matters. We offer evidence-based treatments tailored to your unique needs and circumstances.',
+        'buttonText' => 'Learn More',
+        'buttonLink' => 'services.php',
+        'bgColor' => '#F8F9FA'
     ]
 ];
 
 // Services Data
 $services = [
-    [
-        'id' => 1,
-        'title' => 'Individual Therapy',
-        'description' => 'Personalized one-on-one sessions with experienced psychologists tailored to your unique needs.',
-        'icon' => 'https://via.placeholder.com/200x200/4A90E2/FFFFFF?text=Individual+Therapy',
-        'details' => 'Our individual therapy sessions provide a safe, confidential space where you can explore your thoughts, feelings, and behaviors with a qualified mental health professional.'
-    ],
-    [
-        'id' => 2,
-        'title' => 'Family Counseling',
-        'description' => 'Strengthen family bonds and resolve conflicts through guided therapeutic sessions.',
-        'icon' => 'https://via.placeholder.com/200x200/87CEEB/FFFFFF?text=Family+Counseling',
-        'details' => 'Family counseling helps improve communication, resolve conflicts, and create a more harmonious home environment for all family members.'
-    ],
-    [
-        'id' => 3,
-        'title' => 'Child Psychology',
-        'description' => 'Specialized care for children dealing with behavioral, emotional, and developmental challenges.',
-        'icon' => 'https://via.placeholder.com/200x200/4A90E2/FFFFFF?text=Child+Psychology',
-        'details' => 'Our child psychology services address a wide range of issues including ADHD, anxiety, autism spectrum disorders, and learning difficulties.'
-    ],
-    [
-        'id' => 4,
-        'title' => 'Anxiety & Depression Treatment',
-        'description' => 'Evidence-based treatment programs for managing anxiety disorders and depression.',
-        'icon' => 'https://via.placeholder.com/200x200/87CEEB/FFFFFF?text=Anxiety+Treatment',
-        'details' => 'We offer comprehensive treatment including cognitive behavioral therapy, mindfulness techniques, and medication management when necessary.'
-    ],
-    [
-        'id' => 5,
-        'title' => 'Stress Management',
-        'description' => 'Learn effective techniques to cope with daily stressors and improve overall well-being.',
-        'icon' => 'https://via.placeholder.com/200x200/4A90E2/FFFFFF?text=Stress+Management',
-        'details' => 'Our stress management programs teach practical skills including relaxation techniques, time management, and healthy coping mechanisms.'
-    ],
-    [
-        'id' => 6,
-        'title' => 'Career Counseling',
-        'description' => 'Professional guidance for career decisions, transitions, and workplace challenges.',
-        'icon' => 'https://via.placeholder.com/200x200/87CEEB/FFFFFF?text=Career+Counseling',
-        'details' => 'We help you navigate career choices, overcome workplace stress, and achieve professional fulfillment through personalized counseling.'
-    ]
-];
+    // --- Core & Clinical ---
+    ['id' => 1, 'category' => 'clinical', 'title' => 'Individual Therapy and Counseling', 'description' => 'One-on-one psychological support for personal challenges and emotional concerns.', 'icon' => 'individual.svg', 'details' => 'Personalized therapy for emotional concerns and mental health issues.'],
+    ['id' => 2, 'category' => 'clinical', 'title' => 'Couples / Marriage Counseling', 'description' => 'Sessions to improve communication and strengthen intimate relationships.', 'icon' => 'couples.svg', 'details' => 'Resolve conflicts and build stronger bonds with your partner.'],
+    ['id' => 3, 'category' => 'clinical', 'title' => 'Family Therapy', 'description' => 'Improving family relationships and dynamics within the family system.', 'icon' => 'family.svg', 'details' => 'Aimed at improving communication and resolving shared family challenges.'],
+    ['id' => 4, 'category' => 'clinical', 'title' => 'Anxiety and Depression Support', 'description' => 'Targeted therapy to help manage and cope with symptoms of anxiety and depression.', 'icon' => 'anxiety.svg', 'details' => 'Evidence-based approaches tailored to clinical symptoms.'],
+    ['id' => 5, 'category' => 'clinical', 'title' => 'Trauma Therapy', 'description' => 'Evidence-based therapies to help heal from traumatic life events.', 'icon' => 'trauma.svg', 'details' => 'Support for processing and recovering from deep traumatic experiences.'],
+    ['id' => 6, 'category' => 'clinical', 'title' => 'Teen and Adolescent Counseling', 'description' => 'Support designed for young people facing emotional or behavioral challenges.', 'icon' => 'teen.svg', 'details' => 'Tailored developmental support for teens.'],
 
+    // --- Expanded & Specialty ---
+    ['id' => 7, 'category' => 'specialty', 'title' => 'Psychological Assessment & Evaluation', 'description' => 'Assessment of personality, intelligence, and clinical concerns.', 'icon' => 'assessment.svg', 'details' => 'In-depth evaluation of behavior patterns and emotional intelligence.'],
+    ['id' => 8, 'category' => 'specialty', 'title' => 'Stress Management', 'description' => 'Tools and techniques to handle stress and life transitions.', 'icon' => 'stress.svg', 'details' => 'Development of coping skills for daily pressures.'],
+    ['id' => 9, 'category' => 'specialty', 'title' => 'Personal Growth Workshops', 'description' => 'Support for building self-awareness and resilience.', 'icon' => 'growth.svg', 'details' => 'Workshops focused on emotional intelligence and personal development.'],
+    ['id' => 10, 'category' => 'specialty', 'title' => 'Child Psychological Services', 'description' => 'Clinical focus on behavior, development, and cognitive screening.', 'icon' => 'child.svg', 'details' => 'Assessment and intervention planning for children.'],
+    ['id' => 11, 'category' => 'specialty', 'title' => 'Behavioral Therapy (Learning/Attention)', 'description' => 'Strategies for overactivity or learning difficulties in children.', 'icon' => 'behavior.svg', 'details' => 'Screening and modification strategies for attention challenges.'],
+
+    // --- Holistic & Wellness ---
+    ['id' => 12, 'category' => 'wellness', 'title' => 'Mindfulness & Meditation', 'description' => 'Training in relaxation practices to support wellbeing.', 'icon' => 'mindfulness.svg', 'details' => 'Techniques for stress reduction and mental clarity.'],
+    ['id' => 13, 'category' => 'wellness', 'title' => 'Life Skills Programs', 'description' => 'Focusing on self-confidence and adaptive behaviors.', 'icon' => 'lifeskills.svg', 'details' => 'Developing essential skills for adaptive living.'],
+    ['id' => 14, 'category' => 'wellness', 'title' => 'Community & School Outreach', 'description' => 'Increasing awareness about mental health in community settings.', 'icon' => 'outreach.svg', 'details' => 'Educational programs for schools and local communities.'],
+
+    // --- Online ---
+    ['id' => 15, 'category' => 'online', 'title' => 'Online Counselling', 'description' => 'Confidential psychological services delivered worldwide.', 'icon' => 'online.svg', 'details' => 'Accessible mental health support via secure video conferencing.']
+];
 // Staff Data
 $staff = [
     [

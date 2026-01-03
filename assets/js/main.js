@@ -56,21 +56,31 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== Hero Carousel =====
 let currentSlideIndex = 0;
 const slides = document.querySelectorAll('.carousel-slide');
-const indicators = document.querySelectorAll('.indicator');
+const dots = document.querySelectorAll('.carousel-dot');
+let autoPlayInterval;
 
 function showSlide(index) {
     if (!slides.length) return;
     
-    // Hide all slides
-    slides.forEach(slide => slide.classList.remove('active'));
-    indicators.forEach(indicator => indicator.classList.remove('active'));
+    // Remove active class from all slides and dots
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
     
-    // Show current slide
+    // Calculate the correct slide index (wrap around)
     currentSlideIndex = (index + slides.length) % slides.length;
+    
+    // Add active class to current slide and dot
     slides[currentSlideIndex].classList.add('active');
-    if (indicators[currentSlideIndex]) {
-        indicators[currentSlideIndex].classList.add('active');
+    if (dots[currentSlideIndex]) {
+        dots[currentSlideIndex].classList.add('active');
     }
+    
+    // Reset auto-play timer
+    resetAutoPlay();
 }
 
 function moveSlide(direction) {
@@ -81,11 +91,44 @@ function currentSlide(index) {
     showSlide(index);
 }
 
-// Auto-play carousel
-if (slides.length > 0) {
-    setInterval(() => {
+function resetAutoPlay() {
+    // Clear existing interval
+    if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+    }
+    
+    // Start new interval
+    autoPlayInterval = setInterval(() => {
         moveSlide(1);
-    }, 5000);
+    }, 6000); // 6 seconds per slide
+}
+
+// Initialize carousel auto-play
+if (slides.length > 0) {
+    resetAutoPlay();
+    
+    // Pause on hover
+    const carouselSection = document.querySelector('.hero-carousel-section');
+    if (carouselSection) {
+        carouselSection.addEventListener('mouseenter', () => {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+            }
+        });
+        
+        carouselSection.addEventListener('mouseleave', () => {
+            resetAutoPlay();
+        });
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            moveSlide(-1);
+        } else if (e.key === 'ArrowRight') {
+            moveSlide(1);
+        }
+    });
 }
 
 // ===== Smooth Scrolling =====

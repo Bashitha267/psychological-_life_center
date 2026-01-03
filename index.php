@@ -49,11 +49,11 @@
                     <li><a href="foreign-joins.php" class="text-dark font-medium text-sm hover:text-primary transition-colors duration-300 pb-1 border-b-2 border-transparent hover:border-primary">Partnerships</a></li>
                     <li><a href="contact.php" class="text-dark font-medium text-sm hover:text-primary transition-colors duration-300 pb-1 border-b-2 border-transparent hover:border-primary">Contact</a></li>
                 </ul>
-                <button class="hamburger md:hidden flex flex-col space-y-2 cursor-pointer p-2">
-                    <span class="w-7 h-1 bg-primary rounded-sm transition-all block"></span>
-                    <span class="w-7 h-1 bg-primary rounded-sm transition-all block"></span>
-                    <span class="w-7 h-1 bg-primary rounded-sm transition-all block"></span>
-                </button>
+                <div class="hamburger md:hidden flex flex-col space-y-1.5 cursor-pointer">
+                    <span class="w-6 h-0.5 bg-primary transition-all block"></span>
+                    <span class="w-6 h-0.5 bg-primary transition-all block"></span>
+                    <span class="w-6 h-0.5 bg-primary transition-all block"></span>
+                </div>
             </div>
             <!-- Mobile Menu -->
             <div class="mobile-menu-overlay md:hidden">
@@ -71,33 +71,63 @@
     </nav>
 
     <!-- Hero Carousel Section -->
-    <section class="relative h-[600px] overflow-hidden">
-        <div class="carousel-container relative h-full">
-            <?php foreach($heroImages as $index => $hero): ?>
-            <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000 <?php echo $index === 0 ? 'active opacity-100' : ''; ?>">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('<?php echo $hero['image']; ?>'); filter: brightness(0.7);"></div>
-                <div class="absolute inset-0 flex items-center justify-center z-10">
-                    <div class="max-w-7xl mx-auto px-4 text-center text-white">
-                        <h1 class="text-5xl md:text-6xl font-display font-semibold mb-4 drop-shadow-lg"><?php echo $hero['title']; ?></h1>
-                        <p class="text-xl md:text-2xl mb-8"><?php echo $hero['subtitle']; ?></p>
-                        <a href="contact.php" class="inline-block px-8 py-3.5 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">Get Started</a>
+  <section class="hero-carousel-section relative overflow-hidden h-[600px] md:h-[750px]">
+    <div class="carousel-container h-full">
+        <?php foreach($heroImages as $index => $hero): ?>
+        <div class="carousel-slide <?php echo $index === 0 ? 'active' : ''; ?> h-full w-full" 
+             style="background-color: <?php echo $hero['bgColor']; ?>;">
+            
+            <div class="carousel-content-wrapper flex flex-col md:flex-row h-full w-full">
+                
+                <div class="carousel-text-content flex-1 flex items-center">
+                    <div class="max-w-xl mx-auto md:ml-auto md:mr-12 lg:mr-24 px-6 md:px-0">
+                        <span class="block text-sm font-bold tracking-widest uppercase mb-6 opacity-80" 
+                              style="color: <?php echo $hero['textColor'] ?? '#4A90E2'; ?>">
+                            <?php echo $hero['tag'] ?? 'ARTICLE'; ?>
+                        </span>
+                        
+                        <h1 class="carousel-title font-display text-4xl md:text-6xl font-bold leading-[1.1] mb-6" 
+                            style="color: <?php echo $hero['textColor'] ?? '#2C3E50'; ?>">
+                            <?php echo $hero['title']; ?>
+                        </h1>
+                        
+                        <p class="carousel-description font-sans text-lg md:text-xl opacity-90 mb-10 leading-relaxed" 
+                           style="color: <?php echo $hero['textColor'] ?? '#5A6C7D'; ?>">
+                            <?php echo $hero['description']; ?>
+                        </p>
+                        
+                        <a href="<?php echo $hero['buttonLink']; ?>" 
+                           class="carousel-button group inline-flex items-center justify-center px-10 py-4 rounded-full font-bold transition-all hover:scale-105 shadow-lg" 
+                           style="background-color: <?php echo $hero['btnColor'] ?? '#4A90E2'; ?>; color: #fff;">
+                            <?php echo $hero['buttonText']; ?>
+                            <i class="fas fa-arrow-right ml-3 transition-transform group-hover:translate-x-2"></i>
+                        </a>
                     </div>
                 </div>
+                
+                <div class="carousel-image-content flex-1 h-full relative overflow-hidden">
+                    <img src="<?php echo $hero['image']; ?>" 
+                         alt="<?php echo $hero['title']; ?>" 
+                         class="w-full h-full object-cover block">
+                </div>
+
             </div>
-            <?php endforeach; ?>
         </div>
-        <button class="absolute top-1/2 -translate-y-1/2 left-5 z-20 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white hover:shadow-lg transition-all duration-300" onclick="moveSlide(-1)">
-            <i class="fas fa-chevron-left text-primary"></i>
-        </button>
-        <button class="absolute top-1/2 -translate-y-1/2 right-5 z-20 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white hover:shadow-lg transition-all duration-300" onclick="moveSlide(1)">
-            <i class="fas fa-chevron-right text-primary"></i>
-        </button>
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2.5">
-            <?php foreach($heroImages as $index => $hero): ?>
-            <span class="indicator w-3 h-3 rounded-full cursor-pointer transition-all duration-300 <?php echo $index === 0 ? 'active bg-white scale-110' : 'bg-white/50'; ?>" onclick="currentSlide(<?php echo $index; ?>)"></span>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
+    
+    <div class="absolute bottom-12 left-0 w-full z-20 pointer-events-none">
+        <div class="max-w-7xl mx-auto px-4 flex">
+            <div class="carousel-pagination flex gap-4 pointer-events-auto">
+                <?php foreach($heroImages as $index => $hero): ?>
+                    <button class="carousel-dot <?php echo $index === 0 ? 'active' : ''; ?>" 
+                            onclick="currentSlide(<?php echo $index; ?>)" 
+                            aria-label="Go to slide <?php echo $index + 1; ?>"></button>
+                <?php endforeach; ?>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Services Grid Section -->
     <section class="py-20 bg-arctic scroll-animate">

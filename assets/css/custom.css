@@ -1,192 +1,104 @@
-/* Custom styles for Tailwind CSS - Only for animations and special effects */
-
-/* Mobile Menu Overlay */
-.mobile-menu-overlay {
-    position: fixed;
-    top: 72px; /* Below navbar */
-    right: -100%;
-    width: 75%;
-    max-width: 300px;
-    height: calc(100vh - 72px);
-    background: white;
-    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
-    transition: right 0.3s ease-in-out;
-    z-index: 40;
-    overflow-y: auto;
-}
-
-.mobile-menu-overlay.active {
-    right: 0;
-}
-
-/* Hamburger Menu Animation */
-.hamburger span,
-.mobile-menu-btn span {
-    display: block;
-    width: 24px;
-    height: 3px;
-    background-color: #4A90E2;
-    transition: all 0.3s ease;
-}
-
-.hamburger.active span:nth-child(1),
-.mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2),
-.mobile-menu-btn.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3),
-.mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Scroll Animations */
-.scroll-animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.scroll-animate:not(.animated) {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-animate.animated {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-/* Fade In Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fade-in {
-    opacity: 1;
-}
-
-.scroll-animate:not(.animated) .animate-fade-in {
-    opacity: 0;
-}
-
-.scroll-animate.animated .animate-fade-in {
-    animation: fadeIn 0.8s ease forwards;
-}
-
-/* Slide Up Animation */
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-slide-up {
-    opacity: 1;
-}
-
-.scroll-animate:not(.animated) .animate-slide-up {
-    opacity: 0;
-}
-
-.scroll-animate.animated .animate-slide-up {
-    animation: slideUp 0.8s ease forwards;
-}
-
-/* Testimonials Swiper */
-.testimonials-swiper {
+/* ===== Hero Carousel Split-Screen ===== */
+.hero-carousel-section {
     position: relative;
     width: 100%;
+    min-height: 600px;
 }
 
-.testimonial-slide {
-    display: none;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.testimonial-slide.active {
-    display: block;
-    opacity: 1;
-}
-
-/* Swiper Pagination Dots */
-.swiper-pagination .pagination-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #d1d5db;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.swiper-pagination .pagination-dot.active {
-    background-color: #4A90E2;
-    width: 32px;
-    border-radius: 6px;
-}
-
-/* Hero Carousel Slides */
 .carousel-slide {
     display: none;
     opacity: 0;
+    transition: opacity 0.8s ease-in-out;
 }
 
 .carousel-slide.active {
-    display: block;
+    display: flex !important; /* Flex is required for the split layout */
     opacity: 1;
-    animation: fadeIn 1s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Desktop 50/50 Split */
+.carousel-text-content {
+    flex: 0 0 50% !important;
 }
 
-/* Mobile Menu Toggle */
-.mobile-menu-btn .bar {
-    width: 25px;
-    height: 3px;
-    background-color: #4A90E2;
-    margin: 5px 0;
-    transition: 0.3s;
+.carousel-image-content {
+    flex: 0 0 50% !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-.mobile-menu-btn.active .bar:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
+/* Pagination & Navigation Cluster */
+.carousel-controls-container {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    z-index: 50; /* High z-index to stay above images */
 }
 
-.mobile-menu-btn.active .bar:nth-child(2) {
-    opacity: 0;
+/* Dot Styling */
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
 }
 
-.mobile-menu-btn.active .bar:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
+.carousel-dot.active {
+    background-color: #2C3E50 !important;
+    width: 30px; /* Expands into a pill shape like the reference */
+    border-radius: 10px;
 }
 
-/* Smooth scroll behavior */
-html {
-    scroll-behavior: smooth;
+/* Navigation Arrow Styling */
+.carousel-nav-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(44, 62, 80, 0.2);
+    background: white;
+    color: #2C3E50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
 }
 
-/* Custom shadow utilities */
-.shadow-3xl {
-    box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+.carousel-nav-btn:hover {
+    background-color: #2C3E50;
+    color: white;
+}
+
+/* ===== MOBILE VIEW FIXES ===== */
+@media (max-width: 768px) {
+    .carousel-content-wrapper {
+        flex-direction: column-reverse !important; /* FLIPS ORDER: Image on top, Text below */
+        height: auto !important;
+    }
+
+    .carousel-image-content {
+        height: 350px !important; /* Give image space on mobile */
+        flex: none !important;
+    }
+
+    .carousel-text-content {
+        padding: 3rem 1.5rem !important;
+        text-align: center;
+        flex: none !important;
+    }
+
+    .carousel-title {
+        font-size: 2.25rem !important;
+    }
+
+    /* Move dots to center on mobile */
+    .carousel-controls-container .max-w-7xl {
+        justify-content: center !important;
+    }
 }
